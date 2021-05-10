@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    </style>
+    <title>Test-Practical-Developer</title>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      const locations = [
+        [20.28782, 81.042492],
+        [18.250111, 81.105065],
+        [19.817582, 78.476988],
+        [18.357312, 78.59696],
+        [19.280579, 75.87971],
+        [17.312714, 75.670691],
+      ];
+      const map = L.map('map').setView([11.951862, 88.802483], 5);
+
+      L.tileLayer(
+        'https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png?key=BGjvMv5Ekg1bOqxVlVkj',
+        {
+          attribution:
+            '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+        }
+      ).addTo(map);
+
+      for (let i = 0; i < locations.length; i++) {
+        marker = new L.marker([locations[i][0], locations[i][1]])
+          .bindPopup(`You clicked marker: ${i + 1}`)
+          .addTo(map);
+      }
+    </script>
+  </body>
+</html>
